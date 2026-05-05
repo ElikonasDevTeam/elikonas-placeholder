@@ -1,0 +1,225 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.phone-frame{background:var(--color-background-secondary);border-radius:var(--border-radius-lg);padding:12px;max-width:420px;margin:0 auto}
+.chat-header{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--color-background-primary);border-radius:var(--border-radius-md);margin-bottom:10px;border:0.5px solid var(--color-border-tertiary)}
+.eli-avatar{width:34px;height:34px;border-radius:50%;background:#084c61;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;color:#ffc857;flex-shrink:0}
+.chat-name{font-size:14px;font-weight:500;color:var(--color-text-primary)}
+.chat-sub{font-size:11px;color:var(--color-text-tertiary)}
+.messages{display:flex;flex-direction:column;gap:10px;min-height:320px;padding:4px 0 8px}
+.bubble-row{display:flex;align-items:flex-end;gap:7px}
+.bubble-row.user{flex-direction:row-reverse}
+.mini-avatar{width:26px;height:26px;border-radius:50%;background:#084c61;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;color:#ffc857;flex-shrink:0}
+.user-dot{width:26px;height:26px;border-radius:50%;background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);flex-shrink:0}
+.bubble{max-width:78%;padding:9px 12px;border-radius:14px;font-size:13px;line-height:1.55;color:var(--color-text-primary)}
+.bubble.eli{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-bottom-left-radius:4px}
+.bubble.user{background:#084c61;color:#e8f4f7;border-bottom-right-radius:4px}
+.bubble.eli b{font-weight:500;color:#084c61}
+.bubble.user b{font-weight:500;color:#ffc857}
+.pill-choices{display:flex;flex-wrap:wrap;gap:6px;padding:4px 0 2px 33px}
+.choice-pill{font-size:12px;padding:6px 12px;border-radius:99px;border:0.5px solid #177e89;color:#084c61;background:#e8f4f7;cursor:pointer;transition:background .15s}
+.choice-pill:hover{background:#d0eef2}
+.choice-pill.selected{background:#084c61;color:#e8f4f7;border-color:#084c61}
+.insight-card{background:#fffbee;border:0.5px solid #f0d070;border-radius:var(--border-radius-md);padding:10px 12px;margin:2px 0 2px 33px;font-size:12px;line-height:1.6;color:#5a3e00}
+.insight-card .ic-label{font-size:10px;font-weight:500;color:#ba7517;text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
+.pathway-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-left:3px solid #177e89;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;padding:10px 12px;margin:2px 0 2px 33px}
+.pathway-card .pc-title{font-size:13px;font-weight:500;color:#084c61;margin-bottom:2px}
+.pathway-card .pc-sub{font-size:12px;color:var(--color-text-secondary);line-height:1.5}
+.step-indicator{display:flex;gap:5px;justify-content:center;margin:10px 0 6px}
+.step-dot{width:6px;height:6px;border-radius:50%;background:var(--color-border-secondary)}
+.step-dot.active{background:#177e89;width:18px;border-radius:3px}
+.nav-row{display:flex;gap:8px;margin-top:8px}
+.nav-btn{flex:1;padding:8px;font-size:13px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary);cursor:pointer}
+.nav-btn.primary{background:#084c61;color:#fff;border-color:#084c61}
+.nav-btn:disabled{opacity:.35;cursor:default}
+.stage-label{font-size:10px;font-weight:500;color:var(--color-text-tertiary);text-align:center;letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px}
+</style>
+
+<h2 class="sr-only">Interactive demo showing how Eli, the Elikonas AI guide, would help a lost learner figure out their path</h2>
+
+<div style="padding:1rem 0">
+  <div class="phone-frame">
+    <div class="chat-header">
+      <div class="eli-avatar">E</div>
+      <div>
+        <p class="chat-name">Eli</p>
+        <p class="chat-sub">Your Elikonas guide</p>
+      </div>
+    </div>
+
+    <div class="stage-label" id="stage-label">Stage 1 of 5 — first contact</div>
+    <div class="step-indicator" id="steps"></div>
+
+    <div class="messages" id="messages"></div>
+
+    <div id="choices-area"></div>
+
+    <div class="nav-row">
+      <button class="nav-btn" id="back-btn" onclick="prevStage()" disabled>Back</button>
+      <button class="nav-btn primary" id="next-btn" onclick="nextStage()">Next</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const stages=[
+{
+  label:"Stage 1 of 5 — first contact",
+  msgs:[
+    {from:"eli",text:"Hey, I saw your post. I'm Eli — I'm here to help you figure out what's next, on your own terms. No quiz, no pressure. Just a conversation.<br><br>You said you feel <b>genuinely lost</b>. That's actually a great place to start, because it means you're being honest with yourself. Can I ask you something?"},
+    {from:"user",text:"sure"},
+    {from:"eli",text:"When you said you love <b>bringing an idea to life</b> — is there something specific you were thinking of? Like something you've actually made, built, or done before that gave you that feeling?"}
+  ],
+  choices:["a drawing or design","a project or plan","something with animals","something online or digital","honestly not sure yet"],
+  note:"Eli's first move is always to find the moment of energy — the thing they said they love — and get specific about it. Not what they want to do for work. What they've already done that felt right."
+},
+{
+  label:"Stage 2 of 5 — what's already there",
+  msgs:[
+    {from:"eli",text:"Okay, that tells me something. You've got a <b>maker instinct</b> — you're energized when something goes from idea to real thing. That's not nothing. That's actually a whole category of careers.<br><br>You mentioned you're not great at math and hate public speaking. Those are real constraints and I'm not going to pretend otherwise. But let me push back gently on one thing —"},
+    {from:"user",text:"okay…"},
+    {from:"eli",text:"You also said you have <b>the ambition of a corpse.</b> That's pretty self-aware and also pretty funny — which tells me the ambition is in there somewhere. It's just not pointed at anything yet. What does a good day actually feel like for you? Not work — just a day where you felt okay."}
+  ],
+  choices:["I made or built something","I helped an animal","I was alone and just creating","I figured out how something worked","I was outside"],
+  note:"Eli doesn't argue with the person's self-assessment. It takes the humor seriously and uses it to find the thread. The 'good day' question bypasses career anxiety entirely and gets to values."
+},
+{
+  label:"Stage 3 of 5 — building the picture",
+  msgs:[
+    {from:"eli",text:"I'm starting to see a picture. You light up when you're <b>making things</b>, you're comfortable with animals, you work better without an audience, and you've already noticed what drains you — which is actually rare.<br><br>Here's what I want to show you:"},
+  ],
+  insight:{label:"What Eli sees in you so far",text:"Creative + maker instinct · Animal affinity · Independent worker · High self-awareness · Drawn to outcomes, not process · Energy with living things · Resistant to performance-based work"},
+  msgs2:[
+    {from:"eli",text:"None of that requires a four-year degree to get started. Some of it doesn't require one at all. Can I show you a few directions that actually fit what you just told me?"}
+  ],
+  choices:["yes, show me","I'm skeptical but okay","what about going back to college?"],
+  note:"At this stage Eli surfaces what it's heard back as a reflection — not a career list, but a picture of the person. This is the profile building in real time."
+},
+{
+  label:"Stage 4 of 5 — pathways that fit",
+  msgs:[
+    {from:"eli",text:"Here are three directions that match what you've described. These aren't the only options — but they're real fits based on what you've told me."},
+  ],
+  pathways:[
+    {title:"Visual / digital creative",sub:"Graphic design, illustration, UX design, video production. You make the thing. No podium, no math. Short certificate paths exist at community colleges and online."},
+    {title:"Animal care + behavior",sub:"Vet tech, animal training, wildlife rehabilitation, shelter management. Hands-on, meaningful, people-light. Associate degree or certification routes available."},
+    {title:"Content + storytelling",sub:"Writing, photography, social media strategy, podcast production. Creative, flexible, remote-friendly. Portfolio matters more than degree here."}
+  ],
+  msgs2:[
+    {from:"eli",text:"Any of these feel like they deserve a closer look — or do any of them feel completely wrong?"}
+  ],
+  choices:["tell me more about creative","tell me more about animals","tell me more about content","none of these feel right"],
+  note:"Eli presents pathways, not majors. It also explicitly invites rejection — 'feel completely wrong' is as useful as 'tell me more.' The learner stays in control."
+},
+{
+  label:"Stage 5 of 5 — building the record",
+  msgs:[
+    {from:"eli",text:"One more thing before we go further — and this is important.<br><br>You've already done things that matter. The job shadow that didn't work out? <b>That's data.</b> Knowing you hate public speaking? <b>That's self-knowledge.</b> The creative things you've made, the animals you've cared for, the plans you've organized — all of that belongs in your record.<br><br>Elikonas is going to help you build a <b>learner profile</b> that shows all of it — not just what classes you took, but who you actually are and what you've actually done."},
+    {from:"user",text:"I didn't think any of that counted"},
+    {from:"eli",text:"That's exactly the problem we're here to fix. It all counts. Let's start building it."}
+  ],
+  note:"This is the mission moment. Eli reframes what she's already done as evidence — not failure, not wasted time. The profile is the product, and this is the first moment she understands why it matters."
+}
+];
+
+let current=0,selected=null;
+const msgsEl=document.getElementById('messages');
+const choicesEl=document.getElementById('choices-area');
+const stageLabel=document.getElementById('stage-label');
+const stepsEl=document.getElementById('steps');
+const nextBtn=document.getElementById('next-btn');
+const backBtn=document.getElementById('back-btn');
+
+function renderSteps(){
+  stepsEl.innerHTML='';
+  stages.forEach((_,i)=>{
+    const d=document.createElement('div');
+    d.className='step-dot'+(i===current?' active':'');
+    stepsEl.appendChild(d);
+  });
+}
+
+function renderStage(){
+  const s=stages[current];
+  stageLabel.textContent=s.label;
+  msgsEl.innerHTML='';
+  choicesEl.innerHTML='';
+  selected=null;
+
+  function addBubble(m){
+    const row=document.createElement('div');
+    row.className='bubble-row '+(m.from==='user'?'user':'');
+    const av=document.createElement('div');
+    av.className=m.from==='eli'?'mini-avatar':'user-dot';
+    if(m.from==='eli')av.textContent='E';
+    const b=document.createElement('div');
+    b.className='bubble '+m.from;
+    b.innerHTML=m.text;
+    if(m.from==='eli'){row.appendChild(av);row.appendChild(b);}
+    else{row.appendChild(b);row.appendChild(av);}
+    msgsEl.appendChild(row);
+  }
+
+  s.msgs.forEach(addBubble);
+
+  if(s.insight){
+    const ic=document.createElement('div');
+    ic.className='insight-card';
+    ic.innerHTML=`<div class="ic-label">${s.insight.label}</div>${s.insight.text}`;
+    msgsEl.appendChild(ic);
+  }
+
+  if(s.pathways){
+    s.pathways.forEach(p=>{
+      const pc=document.createElement('div');
+      pc.className='pathway-card';
+      pc.innerHTML=`<div class="pc-title">${p.title}</div><div class="pc-sub">${p.sub}</div>`;
+      msgsEl.appendChild(pc);
+    });
+  }
+
+  if(s.msgs2)s.msgs2.forEach(addBubble);
+
+  if(s.choices){
+    const wrap=document.createElement('div');
+    wrap.className='pill-choices';
+    s.choices.forEach(c=>{
+      const pill=document.createElement('button');
+      pill.className='choice-pill';
+      pill.textContent=c;
+      pill.onclick=()=>{
+        wrap.querySelectorAll('.choice-pill').forEach(p=>p.classList.remove('selected'));
+        pill.classList.add('selected');
+        selected=c;
+        nextBtn.disabled=false;
+      };
+      wrap.appendChild(pill);
+    });
+    choicesEl.appendChild(wrap);
+  }
+
+  if(s.note){
+    const note=document.createElement('div');
+    note.style.cssText='font-size:11px;color:var(--color-text-tertiary);font-style:italic;line-height:1.6;margin:8px 4px 2px;padding:6px 10px;border-top:0.5px solid var(--color-border-tertiary)';
+    note.textContent='Design note: '+s.note;
+    choicesEl.appendChild(note);
+  }
+
+  nextBtn.textContent=current===stages.length-1?'Start over':'Next';
+  nextBtn.disabled=s.choices?true:false;
+  backBtn.disabled=current===0;
+  renderSteps();
+}
+
+function nextStage(){
+  if(current===stages.length-1){current=0;}
+  else{current++;}
+  renderStage();
+}
+function prevStage(){
+  if(current>0){current--;renderStage();}
+}
+
+renderStage();
+</script>
