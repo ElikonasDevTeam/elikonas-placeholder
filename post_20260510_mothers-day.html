@@ -2,495 +2,191 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="apple-touch-icon" href="assets/images/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turning the Tides — For All the Moms</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="global-styles.css">
     <link rel="stylesheet" href="post-styles.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Turning the Tides — For All the Moms | Elikonas Insights</title>
-    <meta name="description" content="On Mother's Day, Elikonas founder Katie Stroud reflects on a graduation day moment at the University of Washington that changed how she understood everything — and why she's still turning the tides.">
-    <style>
-        /* Fallback styles if external stylesheets are unavailable */
-        :root {
-            --dark-teal: #084c61;
-            --teal: #177e89;
-            --red: #db3a34;
-            --gold: #ffc857;
-            --charcoal: #323031;
-            --light-bg: #f7f9fa;
-            --text: #2c2c2c;
-            --muted: #6b7280;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        body {
-            font-family: Georgia, 'Times New Roman', serif;
-            color: var(--text);
-            background: #fff;
-            line-height: 1.75;
-        }
-
-        /* ── SITE HEADER ── */
-        .site-header {
-            background: var(--dark-teal);
-            padding: 0 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 64px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .site-header .logo {
-            color: #fff;
-            font-family: 'Arial Black', Arial, sans-serif;
-            font-size: 1.3rem;
-            text-decoration: none;
-            letter-spacing: 0.5px;
-        }
-        .site-header nav a {
-            color: rgba(255,255,255,0.85);
-            text-decoration: none;
-            margin-left: 1.75rem;
-            font-family: Arial, sans-serif;
-            font-size: 0.9rem;
-            letter-spacing: 0.3px;
-            transition: color 0.2s;
-        }
-        .site-header nav a:hover,
-        .site-header nav a.active { color: var(--gold); }
-
-        /* ── HERO ── */
-        .post-hero {
-            background: linear-gradient(135deg, var(--dark-teal) 0%, var(--teal) 100%);
-            color: #fff;
-            padding: 4rem 2rem 3.5rem;
-            text-align: center;
-        }
-        .post-hero .eyebrow {
-            font-family: Arial, sans-serif;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 1rem;
-        }
-        .post-hero h1 {
-            font-family: Georgia, serif;
-            font-size: clamp(1.8rem, 4vw, 2.8rem);
-            font-weight: bold;
-            line-height: 1.25;
-            max-width: 720px;
-            margin: 0 auto 1.25rem;
-        }
-        .post-hero .subtitle {
-            font-size: 1.05rem;
-            color: rgba(255,255,255,0.8);
-            max-width: 580px;
-            margin: 0 auto 1.75rem;
-            font-style: italic;
-        }
-        .post-meta {
-            font-family: Arial, sans-serif;
-            font-size: 0.82rem;
-            color: rgba(255,255,255,0.65);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1.25rem;
-            flex-wrap: wrap;
-        }
-        .post-meta span { display: flex; align-items: center; gap: 0.35rem; }
-
-        /* ── LAYOUT ── */
-        .page-layout {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 3rem 1.5rem;
-            display: grid;
-            grid-template-columns: 1fr 300px;
-            gap: 3rem;
-        }
-        @media (max-width: 800px) {
-            .page-layout { grid-template-columns: 1fr; }
-        }
-
-        /* ── POST BODY ── */
-        .post-body p {
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-        }
-        .post-body p:first-child::first-letter {
-            font-size: 3.5rem;
-            font-weight: bold;
-            color: var(--dark-teal);
-            float: left;
-            line-height: 0.85;
-            margin-right: 0.12em;
-            margin-top: 0.07em;
-            font-family: Georgia, serif;
-        }
-
-        .post-body .pull-quote {
-            border-left: 4px solid var(--gold);
-            padding: 1rem 1.5rem;
-            margin: 2rem 0;
-            background: #fffbf0;
-            font-size: 1.15rem;
-            font-style: italic;
-            color: var(--dark-teal);
-            line-height: 1.6;
-        }
-
-        .post-body .section-break {
-            text-align: center;
-            color: var(--teal);
-            letter-spacing: 0.5rem;
-            margin: 2.5rem 0;
-            font-size: 1rem;
-            opacity: 0.6;
-        }
-
-        /* ── CTA BOX ── */
-        .cta-box {
-            background: linear-gradient(135deg, var(--dark-teal), var(--teal));
-            color: #fff;
-            border-radius: 8px;
-            padding: 2rem;
-            margin: 2.5rem 0 1rem;
-            text-align: center;
-        }
-        .cta-box h3 {
-            font-family: Arial, sans-serif;
-            font-size: 1.05rem;
-            margin-bottom: 0.65rem;
-            font-weight: bold;
-        }
-        .cta-box p {
-            font-size: 0.92rem;
-            color: rgba(255,255,255,0.85);
-            margin-bottom: 1.25rem !important;
-        }
-        .cta-box .btn {
-            display: inline-block;
-            background: var(--gold);
-            color: var(--charcoal);
-            font-family: Arial, sans-serif;
-            font-weight: bold;
-            font-size: 0.88rem;
-            padding: 0.6rem 1.5rem;
-            border-radius: 4px;
-            text-decoration: none;
-            margin: 0.25rem;
-            transition: opacity 0.2s;
-        }
-        .cta-box .btn:hover { opacity: 0.88; }
-        .cta-box .btn.secondary {
-            background: transparent;
-            color: #fff;
-            border: 1px solid rgba(255,255,255,0.5);
-        }
-
-        /* ── AUTHOR BIO ── */
-        .author-bio {
-            border-top: 2px solid var(--light-bg);
-            margin-top: 2rem;
-            padding-top: 1.75rem;
-            display: flex;
-            gap: 1.25rem;
-            align-items: flex-start;
-        }
-        .author-bio .avatar {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: var(--teal);
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-family: Arial, sans-serif;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-        .author-bio .bio-text h4 {
-            font-family: Arial, sans-serif;
-            font-size: 0.9rem;
-            color: var(--dark-teal);
-            margin-bottom: 0.3rem;
-        }
-        .author-bio .bio-text p {
-            font-size: 0.88rem;
-            color: var(--muted);
-            margin-bottom: 0 !important;
-        }
-
-        /* ── SHARE ── */
-        .share-bar {
-            margin: 2rem 0;
-            padding: 1rem 0;
-            border-top: 1px solid #e5e7eb;
-            border-bottom: 1px solid #e5e7eb;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-        }
-        .share-bar span {
-            font-family: Arial, sans-serif;
-            font-size: 0.8rem;
-            color: var(--muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .share-bar a {
-            display: inline-block;
-            padding: 0.35rem 0.9rem;
-            border-radius: 3px;
-            font-family: Arial, sans-serif;
-            font-size: 0.8rem;
-            font-weight: bold;
-            text-decoration: none;
-            transition: opacity 0.2s;
-        }
-        .share-bar a:hover { opacity: 0.8; }
-        .share-bar .share-li { background: #0a66c2; color: #fff; }
-        .share-bar .share-fb { background: #1877f2; color: #fff; }
-        .share-bar .share-x  { background: #000; color: #fff; }
-
-        /* ── SIDEBAR ── */
-        .sidebar { font-family: Arial, sans-serif; }
-        .sidebar-section {
-            background: var(--light-bg);
-            border-radius: 6px;
-            padding: 1.25rem;
-            margin-bottom: 1.5rem;
-        }
-        .sidebar-section h3 {
-            font-size: 0.78rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--teal);
-            margin-bottom: 1rem;
-            border-bottom: 2px solid var(--gold);
-            padding-bottom: 0.4rem;
-        }
-        .sidebar-section p {
-            font-size: 0.88rem;
-            color: var(--muted);
-            line-height: 1.55;
-            margin-bottom: 1rem;
-        }
-        .sidebar-section .sidebar-link {
-            display: block;
-            color: var(--dark-teal);
-            font-size: 0.88rem;
-            font-weight: bold;
-            text-decoration: none;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #e5e7eb;
-            line-height: 1.4;
-        }
-        .sidebar-section .sidebar-link:last-child { border-bottom: none; }
-        .sidebar-section .sidebar-link:hover { color: var(--teal); }
-        .sidebar-section .sidebar-link small {
-            display: block;
-            font-weight: normal;
-            color: var(--muted);
-            font-size: 0.78rem;
-            margin-top: 0.15rem;
-        }
-        .mc-form input[type="email"] {
-            width: 100%;
-            padding: 0.5rem 0.75rem;
-            border: 1px solid #d1d5db;
-            border-radius: 4px;
-            font-size: 0.88rem;
-            margin-bottom: 0.6rem;
-        }
-        .mc-form button {
-            width: 100%;
-            background: var(--teal);
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            padding: 0.55rem;
-            font-family: Arial, sans-serif;
-            font-size: 0.88rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .mc-form button:hover { background: var(--dark-teal); }
-
-        /* ── FOOTER ── */
-        .site-footer {
-            background: var(--charcoal);
-            color: rgba(255,255,255,0.6);
-            text-align: center;
-            font-family: Arial, sans-serif;
-            font-size: 0.8rem;
-            padding: 2rem;
-            margin-top: 3rem;
-        }
-        .site-footer a { color: var(--gold); text-decoration: none; }
-    </style>
+    <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wnnjpdxu7b");
+    </script>
 </head>
 <body>
-
-<!-- ══ SITE HEADER ══ -->
-<header class="site-header">
-    <a href="index.html" class="logo">ΞLIKONAS</a>
     <nav>
-        <a href="index.html">Home</a>
-        <a href="blog.html" class="active">Insights</a>
-        <a href="stories.html">Stories</a>
-        <a href="demos.html">Demos</a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="blog.html">Insights</a></li>
+            <li><a href="stories.html">Stories</a></li>
+            <li><a href="demos.html">Demos</a></li>
+        </ul>
     </nav>
-</header>
 
-<!-- ══ HERO ══ -->
-<section class="post-hero">
-    <p class="eyebrow">Insights · Mother's Day 2026</p>
-    <h1>Turning the Tides — For All the Moms</h1>
-    <p class="subtitle">A graduation day. A long corridor. The moment I understood what it was really all for.</p>
-    <div class="post-meta">
-        <span>By Katie Stroud</span>
-        <span>·</span>
-        <span>May 10, 2026</span>
-        <span>·</span>
-        <span>5 min read</span>
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
     </div>
-</section>
 
-<!-- ══ PAGE LAYOUT ══ -->
-<div class="page-layout">
+    <div class="container">
+        <div class="post-content">
+            <a href="blog.html" class="back-link">← Back to Blog</a>
 
-    <!-- ── MAIN CONTENT ── -->
-    <main>
-        <article class="post-body">
-
-            <p>A long time ago, someone on LinkedIn asked a question that stopped me: <em>What was a defining moment for you?</em> I answered, and my answer landed well enough that the person who posted it asked if he could share it on his website. I said yes. I never found it again after that. But the moment itself has never left me.</p>
-
-            <p>It was graduation day at the University of Washington. I was in my cap and gown, standing at one end of a long corridor, when she turned the corner at the other end. Even from that distance, I could see the tears. She didn't walk — she raced. And when she got to me and pulled me in, I had this sudden, startling realization: <em>this was all for her.</em></p>
-
-            <p>For me, earning that degree had felt like checking something off a list. An accomplishment, sure. Something I was glad to finish. But for my mom? It was as if she was the one who had stayed up late cramming for midterms. She carried every exam, every paper, every semester right alongside me — and she felt the finish line in her bones the way I didn't.</p>
-
-            <div class="pull-quote">
-                "She was raising us to be leaders. It wouldn't be until years later that I realized earning that degree was something no one in our family history had done. I had turned the tides."
+            <div class="post-header">
+                <div class="post-date">May 10, 2026</div>
+                <h1 class="post-title">Turning the Tides — For All the Moms</h1>
             </div>
 
-            <p>That realization didn't fully land until years later. What I understood eventually — what I couldn't see in the moment — was that no one in our family history had done what I had just done. Not on either side. Not in any generation that anyone could name. I had crossed a line that had never been crossed before.</p>
-
-            <p>And what my mom had done to get us there? She worked graveyard shifts so she could be available during the day if any of us needed her. She dug through the couch cushions to scrape together enough change to buy milk so we could have cereal in the morning. She bit her tongue and patiently waited for each of us to survive our own rebellious teenage years. She proudly celebrated every single high school graduation, because she was the first of her siblings to have all of her kids do that. She led with grit. She showed us, by example, that you push through — especially in the toughest moments.</p>
-
-            <p>She wasn't just parenting. She was building something. And she did it without a roadmap.</p>
-
-            <div class="section-break">✦ ✦ ✦</div>
-
-            <p>The world has changed a lot since that day in the corridor.</p>
-
-            <p>Today, anything you want to learn is practically at your fingertips. And because so many people have been steered toward college as the only respectable path, we now have a serious shortage of people entering the trades — plumbing, road building, agriculture, electrical work, and more. Meanwhile, the cost of college has gotten so steep that a lot of today's young people are walking away from it without knowing what to do instead. There's no clear alternative being handed to them. And there's a stigma that's built up around trade work — this quiet, corrosive idea that the trades are for people who couldn't handle college. As if choosing a different path is a lesser choice.</p>
-
-            <p>I went to college. I also grew up watching people who never went to college do brilliant, essential things. I've seen the kind of intelligence that doesn't show up on a transcript. And I'm done with the idea that only one kind of learning counts.</p>
-
-            <p>I'd like to turn the tides again — for everyone this time.</p>
-
-            <div class="section-break">✦ ✦ ✦</div>
-
-            <p>Elikonas is for all the moms out there who work hard to help their kids succeed. For all the moms who went to school — or who are in school right now — because they want more for their children. For all the moms who have cried at a graduation and felt it like a personal victory. For all the moms who worked in the trades, or in factories, like mine did, as a sacrifice so they could save a little toward something better. For all the moms who are trying to figure out a path forward in a world that seems to change its rules every five minutes.</p>
-
-            <p>Whatever that path looks like — college, certification, trade school, self-directed learning, something that doesn't have a name yet — we're making today's world of learning count. All of it.</p>
-
-            <p>Thanks, Mom. Thanks for leading with grit. For making me feel important. For all the sacrifice you made to build a better life for us. I hope I'm doing something worthy of it.</p>
-
-        </article>
-
-        <!-- Share Bar -->
-        <div class="share-bar">
-            <span>Share</span>
-            <a href="[LINKEDIN_SHARE_URL]" class="share-li" target="_blank" rel="noopener">LinkedIn</a>
-            <a href="[FACEBOOK_SHARE_URL]" class="share-fb" target="_blank" rel="noopener">Facebook</a>
-            <a href="[X_SHARE_URL]" class="share-x" target="_blank" rel="noopener">X</a>
-        </div>
-
-        <!-- Author Bio -->
-        <div class="author-bio">
-            <div class="avatar">KS</div>
-            <div class="bio-text">
-                <h4>Katie Stroud — Founder &amp; CEO, Elikonas</h4>
-                <p>First-generation college graduate. 20+ years in instructional design and digital advertising. Building the learning platform she wishes had existed when she was finding her way.</p>
+            <div class="post-image">
+                <img src="assets/images/post-image_20260510.png" alt="Turning the Tides — For All the Moms">
             </div>
-        </div>
 
-        <!-- CTA Box -->
-        <div class="cta-box">
-            <h3>Know a learner whose story deserves to be told?</h3>
-            <p>We'd love to hear from you — whether it's your story, a mom's story, or someone you know who figured out their own path.</p>
-            <a href="https://bit.ly/elikonas-survey" class="btn" target="_blank" rel="noopener">Share Your Story</a>
-            <a href="mailto:story@elikonas.com" class="btn secondary">Email Us</a>
-        </div>
+            <div class="post-body">
 
-    </main>
+                <p>
+                    A long time ago, someone on LinkedIn asked a question that stopped me: <em>What was a defining moment for you?</em> I answered, and my answer landed well enough that the person who posted it asked if he could share it on his website. I said yes. I never found it again after that. But the moment itself has never left me.
+                </p>
 
-    <!-- ── SIDEBAR ── -->
-    <aside class="sidebar">
+                <p>
+                    It was graduation day at the University of Washington. I was in my cap and gown, standing at one end of a long corridor, when she turned the corner at the other end. Even from that distance, I could see the tears. She didn't walk — she raced. And when she got to me and pulled me in, I had this sudden, startling realization: <em>this was all for her.</em>
+                </p>
 
-        <div class="sidebar-section">
-            <h3>Stay in the loop</h3>
-            <p>New insights, podcast episodes, and updates — straight to your inbox.</p>
-            <form class="mc-form" action="https://elikonas.us4.list-manage.com/subscribe/post?u=2d3e21399e1d37ecbfa72d7b8&id=750f1fce6a&f_id=001dc2e1f0" method="post" target="_blank" novalidate>
-                <input type="email" name="EMAIL" placeholder="Your email address" required>
-                <div style="position:absolute;left:-5000px;" aria-hidden="true">
-                    <input type="text" name="b_2d3e21399e1d37ecbfa72d7b8_750f1fce6a" tabindex="-1" value="">
+                <p>
+                    For me, earning that degree had felt like checking something off a list. An accomplishment, sure. Something I was glad to finish. But for my mom? It was as if she was the one who had stayed up late cramming for midterms. She carried every exam, every paper, every semester right alongside me — and she felt the finish line in her bones the way I didn't.
+                </p>
+
+                <hr>
+
+                <p>
+                    She was raising us to be leaders. She worked graveyard shifts so she could be available during the day if any of us needed her. She dug through the couch cushions to scrape together enough change to buy milk so we could have cereal in the morning. She bit her tongue and patiently waited for each of us to survive our own rebellious teenage years. She proudly celebrated every single high school graduation, because she was the first of her siblings to have all of her kids do that. She led with grit. She showed us, by example, that you push through — especially in the toughest moments.
+                </p>
+
+                <p>
+                    She wasn't just parenting. She was building something.
+                </p>
+
+                <p>
+                    It wouldn't be until years later that I realized what I had actually done that day. No one in our family history — on either side, in any generation anyone could name — had earned a four-year degree before me. It wasn't necessarily about the credential itself. It was about proving something to the world: that we as a people were smart enough to rise above the poverty. That we could be leaders. I had turned the tides for our family.
+                </p>
+
+                <hr>
+
+                <p>
+                    The world has changed a lot since that day in the corridor.
+                </p>
+
+                <p>
+                    Today, anything you want to learn is practically at your fingertips. And because so many people have been steered toward college as the only respectable path, we now have a serious shortage of people entering the trades — plumbing, road building, agriculture, electrical work, and more. Meanwhile, the cost of college has gotten so steep that a lot of today's young people are walking away from it without knowing what to do instead. There's no clear alternative being handed to them.
+                </p>
+
+                <p>
+                    And there's a stigma that has built up around trade work — this quiet, corrosive idea that the trades are for people who couldn't handle college. As if choosing a different path is a lesser choice.
+                </p>
+
+                <p>
+                    I went to college. I also grew up watching people who never went to college do brilliant, essential, irreplaceable things. I've seen the kind of intelligence that doesn't show up on a transcript. And I'm done with the idea that only one kind of learning counts.
+                </p>
+
+                <p>
+                    I'd like to turn the tides again — for everyone this time.
+                </p>
+
+                <h2>For All the Moms</h2>
+
+                <p>
+                    Elikonas is for all the moms out there who work hard to help their kids succeed. For all the moms who went to school — or who are in school right now — because they want more for their children. For all the moms who have cried at a graduation and felt it like a personal victory. For all the moms who worked in the trades, or in factories, like mine did, as a sacrifice so they could save a little toward something better.
+                </p>
+
+                <p>
+                    For all the moms who are trying to figure out a path forward in a world that seems to change its rules every five minutes — we're making today's world of learning count. All of it. College, certification, trade school, self-directed learning, something that doesn't have a name yet. Whatever the path looks like.
+                </p>
+
+                <p>
+                    Thanks, Mom. Thanks for leading with grit. For making me feel important. For all the sacrifice you made to build a better life for us. I hope I'm doing something worthy of it.
+                </p>
+
+            </div>
+
+            <div class="share-section">
+                <div class="share-title">Share this post:</div>
+                <div class="share-buttons">
+                    <a href="https://twitter.com/intent/tweet?url=YOUR_URL&text=Turning%20the%20Tides%20%E2%80%94%20For%20All%20the%20Moms" target="_blank" class="share-btn share-twitter">
+                        <span>𝕏</span> Share on X
+                    </a>
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=YOUR_URL" target="_blank" class="share-btn share-linkedin">
+                        <span>in</span> Share on LinkedIn
+                    </a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=YOUR_URL" target="_blank" class="share-btn share-facebook">
+                        <span>f</span> Share on Facebook
+                    </a>
+                    <a href="mailto:?subject=Turning the Tides — For All the Moms&body=I thought you'd find this interesting: YOUR_URL" class="share-btn share-email">
+                        <span>✉</span> Share via Email
+                    </a>
                 </div>
-                <button type="submit">Subscribe</button>
-            </form>
+            </div>
         </div>
 
-        <div class="sidebar-section">
-            <h3>Recent Insights</h3>
-            <a href="[INSIGHT_POST_URL]" class="sidebar-link">
-                [Previous Insight Title]
-                <small>[Date]</small>
-            </a>
-            <a href="[INSIGHT_POST_URL]" class="sidebar-link">
-                [Previous Insight Title]
-                <small>[Date]</small>
-            </a>
-        </div>
+        <aside class="sidebar">
+            <div class="sidebar-widget">
+                <h3>Join Our Community</h3>
+                <p style="margin-bottom: 1rem; line-height: 1.6;">
+                    Be the first to know when Elikonas launches and get exclusive updates on the future of education.
+                </p>
+                <form class="email-signup" action="https://elikonas.us4.list-manage.com/subscribe/post?u=2d3e21399e1d37ecbfa72d7b8&amp;id=750f1fce6a&amp;f_id=001dc2e1f0" method="POST" target="_blank">
+                    <input type="email" name="EMAIL" class="email-input" placeholder="Please add your email" required>
+                    <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                        <input type="text" name="b_2d3e21399e1d37ecbfa72d7b8_750f1fce6a" tabindex="-1" value="">
+                    </div>
+                    <button type="submit" class="signup-btn">Submit</button>
+                </form>
+            </div>
 
-        <div class="sidebar-section">
-            <h3>From the Podcast</h3>
-            <a href="post_20260417_christabel-behr-college-story.html" class="sidebar-link">
-                A College Story: Christabel Behr
-                <small>Episode 5</small>
-            </a>
-            <a href="post_20260410_karen-hyder-college-story.html" class="sidebar-link">
-                A College Story: Karen Hyder
-                <small>Episode 4</small>
-            </a>
-            <a href="post_20260402_mark-sheppard-college-story.html" class="sidebar-link">
-                A College Story: Mark Sheppard
-                <small>Episode 3</small>
-            </a>
-        </div>
+            <div class="sidebar-widget">
+                <h3>Recent Posts</h3>
+                <div class="related-post">
+                    <div class="related-post-date">April 21, 2026</div>
+                    <a href="post_20260421_look-for-the-helpers.html">Look for the Helpers</a>
+                </div>
+                <div class="related-post">
+                    <div class="related-post-date">April 8, 2026</div>
+                    <a href="post_20260408_maslows-needs.html">Why Learning Stalls: Maslow's Hierarchy of Needs and What It Means for Your Career Path</a>
+                </div>
+                <div class="related-post">
+                    <div class="related-post-date">February 18, 2026</div>
+                    <a href="post_20260218_whats-your-college-story.html">What's Your College Story?</a>
+                </div>
+            </div>
+        </aside>
+    </div>
 
-        <div class="sidebar-section">
-            <h3>About Elikonas</h3>
-            <p>An AI-powered education platform built to expand equitable access to postsecondary pathways — for learners who never saw higher education as an option.</p>
-            <a href="[ABOUT_URL]" class="sidebar-link">Learn more →</a>
-        </div>
+    <script>
+        document.addEventListener('mousemove', (e) => {
+            const shapes = document.querySelectorAll('.shape');
+            shapes.forEach((shape, index) => {
+                const speed = (index + 1) * 0.0005;
+                const x = e.clientX * speed;
+                const y = e.clientY * speed;
+                shape.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
 
-    </aside>
+        document.addEventListener('DOMContentLoaded', function() {
+            const actualURL = encodeURIComponent(window.location.href);
+            document.querySelectorAll('.share-btn').forEach(btn => {
+                const href = btn.getAttribute('href');
+                btn.setAttribute('href', href.replace('YOUR_URL', actualURL));
+            });
+        });
+    </script>
 
-</div><!-- /.page-layout -->
-
-<!-- ══ FOOTER ══ -->
-<footer class="site-footer">
-    <p>&copy; 2026 Elikonas, Public Benefit Corporation &nbsp;·&nbsp; <a href="mailto:katie@katiestroud.com">katie@katiestroud.com</a> &nbsp;·&nbsp; <a href="[PRIVACY_URL]">Privacy Policy</a> &nbsp;·&nbsp; <a href="[TERMS_URL]">Terms</a></p>
-</footer>
+    <!-- Start of HubSpot Embed Code -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js-na2.hs-scripts.com/245593327.js"></script>
+    <!-- End of HubSpot Embed Code -->
 
 </body>
 </html>
