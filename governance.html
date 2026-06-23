@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="apple-touch-icon" href="assets/images/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Governance - Elikonas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="global-styles.css">
+    <style>
+        /* ============================================================
+           governance-styles.css
+           Styles specific to governance.html (and reused on
+           governance-template.html for individual policy pages).
+           Also requires: global-styles.css
+           ============================================================ */
+        body {
+            overflow-x: hidden;
+        }
+        .gov-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 7rem 1.5rem 4rem 1.5rem;
+            position: relative;
+            width: 100%;
+        }
+        .gov-content {
+            max-width: 760px;
+            width: 100%;
+        }
+        .gov-eyebrow {
+            text-align: center;
+            color: #ffce57;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            margin-bottom: 0.75rem;
+        }
+        .gov-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.25);
+        }
+        .gov-intro {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
+            padding: 1.75rem 2rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+        .gov-intro p {
+            margin-bottom: 1rem;
+        }
+        .gov-intro p:last-child {
+            margin-bottom: 0;
+        }
+        .gov-intro strong {
+            color: #ffce57;
+        }
+        .doc-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            margin-bottom: 3rem;
+        }
+        .doc-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 14px;
+            padding: 1.5rem 1.75rem;
+            text-decoration: none;
+            color: white;
+            transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+        }
+        .doc-card:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 206, 87, 0.1);
+            border-color: rgba(255, 206, 87, 0.4);
+        }
+        .doc-card-text h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.4rem;
+            color: #ffffff;
+        }
+        .doc-card-text p {
+            opacity: 0.85;
+            line-height: 1.55;
+            font-size: 0.97rem;
+        }
+        .doc-card-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            flex-shrink: 0;
+            gap: 0.35rem;
+            white-space: nowrap;
+        }
+        .doc-card-arrow {
+            font-size: 1.4rem;
+            color: #ffce57;
+        }
+        .doc-card-version {
+            font-size: 0.75rem;
+            opacity: 0.65;
+        }
+        .gov-divider {
+            width: 100%;
+            max-width: 760px;
+            border: none;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            margin: 0 0 2.5rem 0;
+        }
+        .notify-section {
+            text-align: center;
+            background: rgba(8, 76, 97, 0.4);
+            border: 1px solid rgba(255, 206, 87, 0.25);
+            border-radius: 16px;
+            padding: 2rem 2rem 2.25rem 2rem;
+        }
+        .notify-section h2 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.6rem;
+        }
+        .notify-section p {
+            opacity: 0.85;
+            line-height: 1.6;
+            max-width: 520px;
+            margin: 0 auto 1.5rem auto;
+            font-size: 0.97rem;
+        }
+        .email-signup {
+            display: flex;
+            gap: 0.75rem;
+            margin: 0 auto;
+            max-width: 420px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .email-input {
+            flex: 1;
+            min-width: 220px;
+            padding: 0.9rem 1.25rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+        }
+        .signup-btn {
+            padding: 0.9rem 1.75rem;
+            background: linear-gradient(45deg, #db3a34, #ff6b35);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(219, 58, 52, 0.3);
+            white-space: nowrap;
+        }
+        .signup-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(219, 58, 52, 0.4);
+            background: linear-gradient(45deg, #ff6b35, #db3a34);
+        }
+        .notify-default-note {
+            margin-top: 1rem;
+            font-size: 0.82rem;
+            opacity: 0.6;
+        }
+        @media (max-width: 600px) {
+            .gov-title { font-size: 1.9rem; }
+            .doc-card { flex-direction: column; align-items: flex-start; }
+            .doc-card-meta { align-items: flex-start; }
+            .email-signup { flex-direction: column; align-items: stretch; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="blog.html">Insights</a></li>
+            <li><a href="stories.html">Stories</a></li>
+            <li><a href="demos.html">Demos</a></li>
+            <li><a href="governance.html" style="color:#ffce57;">Governance</a></li>
+        </ul>
+    </nav>
+
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="gov-container">
+        <div class="gov-content">
+            <div class="gov-eyebrow">Governance</div>
+            <h1 class="gov-title">How We Govern This Website</h1>
+
+            <div class="gov-intro">
+                <p>Elikonas exists to give every learner a record they can trust &mdash; one that's <strong>theirs</strong>, for as long as they want it. We think the way we govern this website should reflect that same value: clear, honest, and easy to find.</p>
+                <p>Below are the agreements and policies that explain how we collect and protect your information, how our community works, and how we use AI. We'll keep this page updated whenever something changes, and we'll always let you know &mdash; right here, and in the app.</p>
+            </div>
+
+            <div class="doc-list">
+                <a href="#" class="doc-card">
+                    <div class="doc-card-text">
+                        <h3>Privacy Policy</h3>
+                        <p>What personal information we collect, how we use it, and the choices you have about it.</p>
+                    </div>
+                    <div class="doc-card-meta">
+                        <span class="doc-card-arrow">&rarr;</span>
+                        <span class="doc-card-version">v1 &middot; [DATE]</span>
+                    </div>
+                </a>
+
+                <a href="#" class="doc-card">
+                    <div class="doc-card-text">
+                        <h3>Terms of Service</h3>
+                        <p>The agreement between you and Elikonas that governs your use of the website and platform.</p>
+                    </div>
+                    <div class="doc-card-meta">
+                        <span class="doc-card-arrow">&rarr;</span>
+                        <span class="doc-card-version">v1 &middot; [DATE]</span>
+                    </div>
+                </a>
+
+                <a href="#" class="doc-card">
+                    <div class="doc-card-text">
+                        <h3>Community Guidelines</h3>
+                        <p>How we treat each other here &mdash; what's welcome, what's not, and how we handle concerns.</p>
+                    </div>
+                    <div class="doc-card-meta">
+                        <span class="doc-card-arrow">&rarr;</span>
+                        <span class="doc-card-version">v1 &middot; [DATE]</span>
+                    </div>
+                </a>
+
+                <a href="#" class="doc-card">
+                    <div class="doc-card-text">
+                        <h3>AI Usage Policy</h3>
+                        <p>How Elikonas uses AI &mdash; in the platform and internally &mdash; and what we commit to as we do.</p>
+                    </div>
+                    <div class="doc-card-meta">
+                        <span class="doc-card-arrow">&rarr;</span>
+                        <span class="doc-card-version">v1 &middot; [DATE]</span>
+                    </div>
+                </a>
+            </div>
+
+            <hr class="gov-divider">
+
+            <div class="notify-section">
+                <h2>Stay in the loop</h2>
+                <p>We'll always notify you in the app when one of these policies changes. If you'd also like an email, drop your address below.</p>
+
+                <!-- NOTE FOR KATIE: replace action URL below with the Mailchimp audience
+                     specifically created for governance/policy update notifications.
+                     Currently points to placeholder action attributes — swap u=, id=, and
+                     the hidden honeypot field name to match the new audience. -->
+                <form class="email-signup" action="https://elikonas.us4.list-manage.com/subscribe/post?u=REPLACE_WITH_AUDIENCE_U&amp;id=REPLACE_WITH_AUDIENCE_ID&amp;f_id=REPLACE_WITH_F_ID" method="POST" target="_blank">
+                    <input type="email" name="EMAIL" class="email-input" placeholder="you@example.com" required>
+                    <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                        <input type="text" name="b_REPLACE_WITH_AUDIENCE_U_REPLACE_WITH_AUDIENCE_ID" tabindex="-1" value="">
+                    </div>
+                    <button type="submit" class="signup-btn">Notify Me by Email</button>
+                </form>
+
+                <div class="notify-default-note">In-app notification is on by default for every Elikonas account. Email is optional, and you can unsubscribe anytime.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('mousemove', (e) => {
+            const shapes = document.querySelectorAll('.shape');
+            shapes.forEach((shape, index) => {
+                const speed = (index + 1) * 0.0005;
+                const x = e.clientX * speed;
+                const y = e.clientY * speed;
+                shape.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
+    </script>
+    <script src="https://helloskip.com/agent.js" data-agent-id="JgvQjunMZL0PD1J81u0H"></script>
+    <!-- Start of HubSpot Embed Code -->
+      <script type="text/javascript" id="hs-script-loader" async defer src="//js-na2.hs-scripts.com/245593327.js"></script>
+    <!-- End of HubSpot Embed Code -->
+</body>
+</html>
