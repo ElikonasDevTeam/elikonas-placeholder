@@ -1,6 +1,31 @@
 g<!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>
+      // Disable HubSpot's default cookie banner
+      window.disableHubSpotCookieBanner = true;
+      window._hsp = window._hsp || [];
+
+      const setHubSpotConsent = (consentDetails) => {
+        window._hsp.push(["setHubSpotConsent", consentDetails]);
+      };
+
+      const getConsentDetails = ({ analytics, advertisement, functional }) => ({
+        analytics: !!analytics,
+        advertisement: !!advertisement,
+        functionality: !!functional,
+      });
+
+      document.addEventListener("cookieyes_banner_load", ({ detail }) => {
+        if (!detail || !detail.categories) return;
+        setHubSpotConsent(getConsentDetails(detail.categories));
+      });
+
+      document.addEventListener("cookieyes_consent_update", ({ detail }) => {
+        if (!detail || !detail.categories) return;
+        setHubSpotConsent(getConsentDetails(detail.categories));
+      });
+    </script>
     <!-- Start cookieyes banner -->
     <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/8991d2cf76f366b01f801203893e9ec9/script.js"></script>
     <!-- End cookieyes banner -->
