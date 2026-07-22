@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+      // Disable HubSpot's default cookie banner
+      window.disableHubSpotCookieBanner = true;
+      window._hsp = window._hsp || [];
+
+      const setHubSpotConsent = (consentDetails) => {
+        window._hsp.push(["setHubSpotConsent", consentDetails]);
+      };
+
+      const getConsentDetails = ({ analytics, advertisement, functional }) => ({
+        analytics: !!analytics,
+        advertisement: !!advertisement,
+        functionality: !!functional,
+      });
+
+      document.addEventListener("cookieyes_banner_load", ({ detail }) => {
+        if (!detail || !detail.categories) return;
+        setHubSpotConsent(getConsentDetails(detail.categories));
+      });
+
+      document.addEventListener("cookieyes_consent_update", ({ detail }) => {
+        if (!detail || !detail.categories) return;
+        setHubSpotConsent(getConsentDetails(detail.categories));
+      });
+    </script>
+    <!-- Start cookieyes banner -->
+    <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/8991d2cf76f366b01f801203893e9ec9/script.js"></script>
+    <!-- End cookieyes banner -->
+
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="apple-touch-icon" href="assets/images/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roadmap - Elikonas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="global-styles.css">
+    <style>
+        /* ============================================================
+           roadmap-styles.css
+           Styles specific to roadmap.html.
+           Reuses the gov-* naming convention from governance/index.html
+           for visual consistency. Requires: global-styles.css
+           ============================================================ */
+        body {
+            overflow-x: hidden;
+        }
+        .gov-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 7rem 1.5rem 4rem 1.5rem;
+            position: relative;
+            width: 100%;
+        }
+        .gov-content {
+            max-width: 980px;
+            width: 100%;
+        }
+        .gov-eyebrow {
+            text-align: center;
+            color: #ffce57;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            margin-bottom: 0.75rem;
+        }
+        .gov-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.25);
+        }
+        .gov-intro {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
+            padding: 1.75rem 2rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+            font-size: 1.05rem;
+            max-width: 760px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .gov-intro p {
+            margin-bottom: 1rem;
+        }
+        .gov-intro p:last-child {
+            margin-bottom: 0;
+        }
+        .gov-intro strong {
+            color: #ffce57;
+        }
+
+        /* Board */
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.75rem;
+            margin-bottom: 3rem;
+        }
+        .board-column-header {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 1.1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .status-dot.now { background: #5dcaa5; }
+        .status-dot.soon { background: #ffce57; }
+        .status-dot.later { background: rgba(255, 255, 255, 0.5); }
+        .board-column-header h2 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+        .board-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .feature-card {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 14px;
+            padding: 1.1rem 1.25rem;
+            transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 206, 87, 0.08);
+            border-color: rgba(255, 206, 87, 0.35);
+        }
+        .feature-card h3 {
+            font-size: 1.02rem;
+            margin-bottom: 0.4rem;
+            color: #ffffff;
+        }
+        .feature-card p {
+            opacity: 0.85;
+            line-height: 1.55;
+            font-size: 0.92rem;
+        }
+        .feature-card .linked-note {
+            display: inline-block;
+            margin-top: 0.55rem;
+            font-size: 0.78rem;
+            color: #ffce57;
+            opacity: 0.9;
+        }
+
+        .gov-divider {
+            width: 100%;
+            max-width: 760px;
+            border: none;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            margin: 0 0 2.5rem 0;
+        }
+
+        .notify-section {
+            text-align: center;
+            background: rgba(8, 76, 97, 0.4);
+            border: 1px solid rgba(255, 206, 87, 0.25);
+            border-radius: 16px;
+            padding: 2rem 2rem 2.25rem 2rem;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+        .notify-section h2 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.6rem;
+        }
+        .notify-section p {
+            opacity: 0.85;
+            line-height: 1.6;
+            max-width: 520px;
+            margin: 0 auto 1.5rem auto;
+            font-size: 0.97rem;
+        }
+        .notify-cta-row {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .survey-btn {
+            padding: 0.9rem 1.75rem;
+            background: linear-gradient(45deg, #db3a34, #ff6b35);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(219, 58, 52, 0.3);
+            white-space: nowrap;
+        }
+        .survey-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(219, 58, 52, 0.4);
+            background: linear-gradient(45deg, #ff6b35, #db3a34);
+        }
+        .notify-default-note {
+            margin-top: 1.25rem;
+            font-size: 0.82rem;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 900px) {
+            .board { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 600px) {
+            .gov-title { font-size: 1.9rem; }
+            .notify-cta-row { flex-direction: column; align-items: stretch; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="blog.html">Insights</a></li>
+            <li><a href="stories.html">Stories</a></li>
+            <li><a href="demos.html">Demos</a></li>
+            <li><a href="roadmap.html" style="color:#ffce57;">Roadmap</a></li>
+            <li><a href="governance/index.html">Governance</a></li>
+        </ul>
+    </nav>
+
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="gov-container">
+        <div class="gov-content">
+            <div class="gov-eyebrow">Roadmap</div>
+            <h1 class="gov-title">Where We Are, Where We're Headed</h1>
+
+            <div class="gov-intro">
+                <p>You're using Elikonas during our <strong>founding member alpha</strong> &mdash; which means you're seeing a real, working platform, not a finished one. We'd rather be upfront about that than pretend otherwise.</p>
+                <p>Below is what's live today, what we're building next, and what's further out. We'll keep this page current as things ship. And if you want a say in what we build next, <strong>tell us</strong> &mdash; the survey link at the bottom takes two minutes and directly shapes our priorities.</p>
+            </div>
+
+            <div class="board">
+                <div class="board-column">
+                    <div class="board-column-header">
+                        <span class="status-dot now"></span>
+                        <h2>Available now</h2>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Learning record</h3>
+                        <p>Build your portable, owned record of ed-units &mdash; the credentials, courses, and skills you've built, all in one place that belongs to you.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>AI guide, Eli</h3>
+                        <p>Talk through your goals and interests with Eli, your AI-powered guide, and get a pathway built around where you actually want to go.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Musings community</h3>
+                        <p>Share what you're learning and see what others are working on. This is where the Elikonas community actually happens.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Groups</h3>
+                        <p>Join or start a group around a shared topic or interest, and keep the conversation going beyond a single post.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Tidings (messaging)</h3>
+                        <p>Message other learners directly to connect, ask questions, or trade notes on a shared path.</p>
+                    </div>
+                </div>
+
+                <div class="board-column">
+                    <div class="board-column-header">
+                        <span class="status-dot soon"></span>
+                        <h2>Coming soon</h2>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Learning library search</h3>
+                        <p>Browse and filter a growing catalog of ed-units by category, provider, and topic &mdash; the foundation for the full provider marketplace below.</p>
+                        <span class="linked-note">&rarr; grows into Provider marketplace</span>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Persistent Eli history</h3>
+                        <p>Eli will remember your past conversations across sessions, so your pathway can build on everything you've already discussed.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Mobile-friendly layouts</h3>
+                        <p>A version of Elikonas built for your phone, not just adapted to it.</p>
+                    </div>
+                </div>
+
+                <div class="board-column">
+                    <div class="board-column-header">
+                        <span class="status-dot later"></span>
+                        <h2>On the horizon</h2>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Provider marketplace</h3>
+                        <p>The learning library, fully realized: direct enrollment through partner providers, right from your pathway.</p>
+                        <span class="linked-note">&larr; builds on Learning library search</span>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Book store</h3>
+                        <p>Curated learning supplies and Elikonas gear &mdash; currently a coming-soon placeholder in the app.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Employer portal</h3>
+                        <p>A way for employers to recognize and hire from the skills learners have already built and recorded here.</p>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="gov-divider">
+
+            <div class="notify-section">
+                <h2>Help us prioritize</h2>
+                <p>Which of these matters most to you? A short survey takes about two minutes and goes straight into what we build next.</p>
+                <div class="notify-cta-row">
+                    <!-- NOTE FOR KATIE: replace with the actual Google Form URL for the feature-prioritization survey -->
+                    <a href="#" class="survey-btn">Take the Survey</a>
+                </div>
+                <div class="notify-default-note">We'll always share back what we heard and how it shaped the roadmap.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('mousemove', (e) => {
+            const shapes = document.querySelectorAll('.shape');
+            shapes.forEach((shape, index) => {
+                const speed = (index + 1) * 0.0005;
+                const x = e.clientX * speed;
+                const y = e.clientY * speed;
+                shape.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
+    </script>
+    <script src="https://helloskip.com/agent.js" data-agent-id="JgvQjunMZL0PD1J81u0H"></script>
+    <!-- Start of HubSpot Embed Code -->
+      <script type="text/javascript" id="hs-script-loader" async defer src="//js-na2.hs-scripts.com/245593327.js"></script>
+    <!-- End of HubSpot Embed Code -->
+</body>
+</html>
